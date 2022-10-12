@@ -1,3 +1,4 @@
+import 'package:bank_macro/models/Comprobante.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,7 +9,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> items = ["HOLA", "HELLO", "PEPE"];
+  TextEditingController _cbu = TextEditingController(text: "");
+  TextEditingController _dinero = TextEditingController(text: "");
+  List<String> items = ["PIPO", "HELLO", "PEPE"];
   String? selectedItem = "HOLA";
   @override
   Widget build(BuildContext context) {
@@ -23,14 +26,18 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Enviar dinero a"),
-              TextField(),
+              TextField(
+                controller: _cbu,
+              ),
             ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Importe"),
-              TextField(),
+              TextField(
+                controller: _dinero,
+              ),
             ],
           ),
           Column(
@@ -51,6 +58,29 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+          Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SizedBox(
+                  height: 40.0,
+                  width: 340.0,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xFFF003156)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ))),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Comprobante(_cbu.text,
+                                  _dinero.text, items.elementAt(3))));
+                    },
+                    child: Text("Continuar"),
+                  )))
         ],
       ),
     );
