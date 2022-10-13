@@ -9,37 +9,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController _alias = TextEditingController(text: "");
   TextEditingController _cbu = TextEditingController(text: "");
+  TextEditingController _beneficiario = TextEditingController(text: "");
+  TextEditingController _cuit = TextEditingController(text: "");
+  TextEditingController _banco = TextEditingController(text: "");
   TextEditingController _dinero = TextEditingController(text: "");
+  TextEditingController _referencia = TextEditingController(text: "");
   List<String> items = ["PIPO", "HELLO", "PEPE"];
-  String? selectedItem = "HOLA";
+  String? selectedItem = "PIPO";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Transferencia"),
+        title: Text("Transferencia a otros"),
         backgroundColor: Color(0xFFF003156),
       ),
-      body: Column(
+      body: ListView(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Enviar dinero a"),
-              TextField(
-                controller: _cbu,
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Importe"),
-              TextField(
-                controller: _dinero,
-              ),
-            ],
-          ),
+          //ALIAS ***************************************************
+          Date("ALIAS DESTINO", TextInputType.text, _alias),
+          //CBU******************************************************
+          Date("CBU/CVU DESTINO", TextInputType.number, _cbu),
+          //NOMBRE BENEFICIARIO**************************************
+          Date("NOMBRE BENEFICIARIO", TextInputType.text, _beneficiario),
+          //CUIT/CUIL/CDI*****************************************+++
+          Date("CUIT/CUIL/CDI", TextInputType.number, _cuit),
+          //CUIT/CUIL/CDI*****************************************+++
+          Date("BANCO", TextInputType.number, _banco),
+          //CONCEPTO*************************************************
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -56,8 +54,24 @@ class _HomePageState extends State<HomePage> {
                   onChanged: (item) => setState(() => selectedItem = item),
                 ),
               ),
+              //REFERENCIA (OPCIONAL)*********************************************
+              TextField(
+                cursorColor: Color(0xFFF003156),
+                keyboardType: TextInputType.text,
+                controller: _referencia,
+                decoration: InputDecoration(
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFFF003156)),
+                    //  when the TextFormField in focused
+                  ),
+                  hintText: "Referencia (Opcional)",
+                ),
+              ),
+              //IMPORTE+++++++*****************************************+++
+              Date("IMPORTE", TextInputType.number, _dinero),
             ],
           ),
+          //BOTTOM*********************************************
           Padding(
               padding: const EdgeInsets.all(10.0),
               child: SizedBox(
@@ -66,18 +80,16 @@ class _HomePageState extends State<HomePage> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Color(0xFFF003156)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ))),
+                            MaterialStateProperty.all(Color(0xFFF003156))),
                     onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Comprobante(_cbu.text,
-                                  _dinero.text, items.elementAt(3))));
+                              builder: (context) => Comprobante(
+                                  _cbu.text,
+                                  _dinero.text,
+                                  selectedItem.toString(),
+                                  _referencia.text)));
                     },
                     child: Text("Continuar"),
                   )))
@@ -85,4 +97,24 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+
+Date(dato, dato2, dato3) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(dato),
+      TextFormField(
+        cursorColor: Color(0xFFF003156),
+        keyboardType: dato2,
+        controller: dato3,
+        decoration: InputDecoration(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFF003156)),
+            //  when the TextFormField in focused
+          ),
+        ),
+      ),
+    ],
+  );
 }

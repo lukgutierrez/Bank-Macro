@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 class Comprobante extends StatefulWidget {
   final String _cbu;
   final String _dinero;
-  final String items;
+  final String selectedItem;
+  final String _referencia;
 
-  Comprobante(this._cbu, this._dinero, this.items);
+  Comprobante(this._cbu, this._dinero, this.selectedItem, this._referencia);
 
   @override
   State<Comprobante> createState() => _ComprobanteState();
@@ -21,7 +22,8 @@ class _ComprobanteState extends State<Comprobante> {
         children: [
           Text(widget._cbu),
           Text(widget._dinero),
-          Text(widget.items),
+          Text(widget.selectedItem),
+          Text(widget._referencia),
         ],
       )),
     );
