@@ -16,8 +16,15 @@ class _HomePageState extends State<HomePage> {
   TextEditingController _banco = TextEditingController(text: "");
   TextEditingController _dinero = TextEditingController(text: "");
   TextEditingController _referencia = TextEditingController(text: "");
-  List<String> items = ["PIPO", "HELLO", "PEPE"];
-  String? selectedItem = "PIPO";
+  List<String> items = [
+    "Varios",
+    "Factura",
+    "Cuota",
+    "Alquiler",
+    "Haberes",
+    "Seguro"
+  ];
+  String? selectedItem = "Varios";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +43,7 @@ class _HomePageState extends State<HomePage> {
           //CUIT/CUIL/CDI*****************************************+++
           Date("CUIT/CUIL/CDI", TextInputType.number, _cuit),
           //CUIT/CUIL/CDI*****************************************+++
-          Date("BANCO", TextInputType.number, _banco),
+          Date("BANCO", TextInputType.text, _banco),
           //CONCEPTO*************************************************
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +96,11 @@ class _HomePageState extends State<HomePage> {
                                   _cbu.text,
                                   _dinero.text,
                                   selectedItem.toString(),
-                                  _referencia.text)));
+                                  _referencia.text,
+                                  _alias.text,
+                                  _beneficiario.text,
+                                  _cuit.text,
+                                  _banco.text)));
                     },
                     child: Text("Continuar"),
                   )))
@@ -107,6 +118,7 @@ Date(dato, dato2, dato3) {
       TextFormField(
         cursorColor: Color(0xFFF003156),
         keyboardType: dato2,
+        textCapitalization: TextCapitalization.characters,
         controller: dato3,
         decoration: InputDecoration(
           focusedBorder: UnderlineInputBorder(
