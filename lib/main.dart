@@ -8,8 +8,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        theme: ThemeData(primaryColor: Color(0xFFF003156)),
         debugShowCheckedModeBanner: false,
-        title: 'BANCK NATION',
+        title: 'BANK MACRO',
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,

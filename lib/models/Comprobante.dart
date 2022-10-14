@@ -53,55 +53,47 @@ class _ComprobanteState extends State<Comprobante> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: ui.Color(0xFFF32AFDF),
-            elevation: 0,
-            automaticallyImplyLeading: false,
-            title: Center(
-              child: GestureDetector(
-                  onTap: () async {
-                    var path = await generateImage();
-                    Share.shareFiles([path]);
-                  },
-                  child: Icon(Icons.share)),
-              // title: Text("Comprobante"),
-              // backgroundColor: Color(0xFFF003156),
-            )),
-        body: ListView(
-          children: [
-            SizedBox(
-              width: 664,
-              height: 680,
-              child: RepaintBoundary(
-                key: _keyBoundary,
-                child: ImageGenerate(
-                  widget._cbu,
-                  widget._dinero,
-                  widget.selectedItem,
-                  widget._alias,
-                  widget._beneficiario,
-                  widget._cuit,
-                  widget._banco,
-                  widget._referencia,
-                ),
-              ),
+      appBar: AppBar(
+        title: Text("Comprobante"),
+        backgroundColor: Color(0xFFF003156),
+      ),
+      body: ListView(children: [
+        SizedBox(
+          width: 664,
+          height: 680,
+          child: RepaintBoundary(
+            key: _keyBoundary,
+            child: ImageGenerate(
+              widget._cbu,
+              widget._dinero,
+              widget.selectedItem,
+              widget._alias,
+              widget._beneficiario,
+              widget._cuit,
+              widget._banco,
+              widget._referencia,
             ),
-            Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                    height: 40.0,
-                    width: 340.0,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Color(0xFFF003156))),
-                      onPressed: () async {
-                        // var path = generateImage();
-                        // Share.shareFiles([path?]);
-                      },
-                      child: Text("Compartir"),
-                    )))
-          ],
-        ));
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: GestureDetector(
+            onTap: () async {
+              var path = await generateImage();
+              Share.shareFiles([path]);
+            },
+            child: Container(
+              height: 50,
+              color: Color(0xFFF003156),
+              child: Center(
+                  child: Text(
+                "Compartir",
+                style: TextStyle(color: Colors.white),
+              )),
+            ),
+          ),
+        )
+      ]),
+    );
   }
 }
