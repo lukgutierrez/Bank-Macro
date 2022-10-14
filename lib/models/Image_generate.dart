@@ -22,7 +22,7 @@ class _ImageGenerateState extends State<ImageGenerate> {
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
-    String FechaActual = DateFormat("dd/MM/yyyy HH:mm:ss", 'es_ES').format(now);
+    String FechaActual = DateFormat("dd/MM/yyyy HH:mm", 'es_ES').format(now);
     return Scaffold(
         body: Stack(
       children: [
@@ -32,7 +32,7 @@ class _ImageGenerateState extends State<ImageGenerate> {
         Column(
           children: [
             Divider(
-              height: 70,
+              height: 75,
               color: Colors.transparent,
             ),
             Row(
@@ -42,9 +42,104 @@ class _ImageGenerateState extends State<ImageGenerate> {
                   FechaActual,
                   style: TextStyle(fontSize: 15),
                 ),
-                Text("03473", style: TextStyle(fontSize: 15))
+                SizedBox(
+                  width: 5,
+                ),
+                Text("03473", style: TextStyle(fontSize: 16))
               ],
             ),
+            Divider(
+              height: 60,
+              color: Colors.transparent,
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 202,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //ALIAS************************************
+                    Text(
+                      widget._referencia,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                    Divider(
+                      height: 09,
+                      color: Colors.transparent,
+                    ),
+                    //CBU***************************************
+                    Text(
+                      widget._cbu,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                    Divider(
+                      height: 18,
+                      color: Colors.transparent,
+                    ),
+                    //BENEFICIARIO******************************
+                    Text(
+                      widget._beneficiario,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                    Divider(
+                      height: 16,
+                      color: Colors.transparent,
+                    ),
+                    //CUIT/CUIT*********************************
+
+                    Text(
+                      widget._alias,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    Divider(
+                      height: 64,
+                      color: Colors.transparent,
+                    ),
+                    //BANCO************************************
+
+                    Text(
+                      widget._banco,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    Divider(
+                      height: 06,
+                      color: Colors.transparent,
+                    ),
+                    //CONCEPTO*********************************
+
+                    Text(
+                      widget.selectedItem,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    Divider(
+                      height: 06,
+                      color: Colors.transparent,
+                    ),
+                    //REFERENCIA*********************************
+
+                    Text(
+                      widget._cuit,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    Divider(
+                      height: 35,
+                      color: Colors.transparent,
+                    ),
+                    //IMPORTE************************************
+
+                    Text(
+                      widget._dinero,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
+                ),
+              ],
+            )
           ],
         )
       ],
