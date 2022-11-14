@@ -1,4 +1,5 @@
 import 'package:bank_macro/Pages/Home_Page.dart';
+import 'package:bank_macro/models/Movimientos_Cuenta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -17,6 +18,6 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate
         ],
         supportedLocales: [const Locale('en'), const Locale('es')],
-        home: HomePage());
+        home: MovimientosCuenta());
   }
 }
