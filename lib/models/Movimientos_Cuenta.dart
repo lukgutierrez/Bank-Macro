@@ -19,9 +19,24 @@ class Tab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 5,
       child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(items: [
+          BottomNavigationBarItem(
+              label: "",
+              icon: Row(
+                children: [
+                  Switch(
+                    value: false,
+                    onChanged: (value) {},
+                  ),
+                  Text("Enviar por Correo")
+                ],
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite, color: Colors.white70), label: ""),
+        ]),
         appBar: AppBar(
           bottom: TabBar(
               indicatorColor: Color.fromARGB(255, 255, 113, 160),
@@ -31,35 +46,35 @@ class Tab extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
                     "Movimientos",
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 15),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
                     "Datos de CBU",
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 15),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
                     "Detalle de Cuenta",
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 15),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
                     "Alias CBU",
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 15),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
                     "Cobrar con QR",
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 15),
                   ),
                 )
               ]),
@@ -80,11 +95,11 @@ class Tab extends StatelessWidget {
             children: [
               Text(
                 "C.sueldo/seg.social",
-                style: TextStyle(fontSize: 17),
+                style: TextStyle(fontSize: 20),
               ),
               Text(
                 r"CA....4465/$ 4.808.890,00",
-                style: TextStyle(fontSize: 11),
+                style: TextStyle(fontSize: 13),
               )
             ],
           ),
@@ -96,27 +111,35 @@ class Tab extends StatelessWidget {
             children: [
               List("pepep", "-485745", "98/09/2002", "90000"),
               Divider(
-                color: Colors.black,
+                color: Colors.black45,
               ),
               List("pepep", "-485745", "98/09/2002", "90000"),
               Divider(
-                color: Colors.black,
+                color: Colors.black45,
               ),
               List("pepep", "-485745", "98/09/2002", "90000"),
               Divider(
-                color: Colors.black,
+                color: Colors.black45,
               ),
               List("pepep", "-485745", "98/09/2002", "90000"),
               Divider(
-                color: Colors.black,
+                color: Colors.black45,
               ),
               List("pepep", "-485745", "98/09/2002", "90000"),
               Divider(
-                color: Colors.black,
+                color: Colors.black45,
               ),
               List("pepep", "-485745", "98/09/2002", "90000"),
               Divider(
-                color: Colors.black,
+                color: Colors.black45,
+              ),
+              List("pepep", "-485745", "98/09/2002", "90000"),
+              Divider(
+                color: Colors.black45,
+              ),
+              List("pepep", "-485745", "98/09/2002", "90000"),
+              Divider(
+                color: Colors.black45,
               ),
               List("pepep", "-485745", "98/09/2002", "90000"),
             ],
@@ -140,7 +163,7 @@ List(titular, monto, fecha, cuentadinero) {
         Text(
           titular,
           style: TextStyle(
-            fontSize: 12,
+            fontSize: 15,
             color: Colors.black54,
           ),
         ),
@@ -148,24 +171,24 @@ List(titular, monto, fecha, cuentadinero) {
           children: [
             Text(r"$",
                 style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 15,
                     color: Colors.red,
                     fontWeight: FontWeight.bold)),
             Text(
               monto,
               style: TextStyle(
-                  fontSize: 12, color: Colors.red, fontWeight: FontWeight.bold),
+                  fontSize: 15, color: Colors.red, fontWeight: FontWeight.bold),
             ),
           ],
         ),
-        Text(fecha, style: TextStyle(fontSize: 12, color: Colors.black54)),
+        Text(fecha, style: TextStyle(fontSize: 15, color: Colors.black54)),
         Row(
           children: [
             Text(r"Saldo $",
-                style: TextStyle(fontSize: 12, color: Colors.black54)),
+                style: TextStyle(fontSize: 15, color: Colors.black54)),
             Text(
               cuentadinero,
-              style: TextStyle(fontSize: 12, color: Colors.black54),
+              style: TextStyle(fontSize: 15, color: Colors.black54),
             ),
           ],
         )
