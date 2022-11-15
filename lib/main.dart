@@ -18,6 +18,6 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate
         ],
         supportedLocales: [const Locale('en'), const Locale('es')],
-        home: MovimientosCuenta());
+        home: HomePage());
   }
 }

@@ -1,23 +1,33 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class MovimientosCuenta extends StatelessWidget {
-  const MovimientosCuenta({Key? key}) : super(key: key);
+class Movimientos extends StatelessWidget {
+  final String _cbu;
+  final String _alias;
+  final String _beneficiario;
+  final String _cuit;
+  final String _banco;
+  final String _dinero;
+  final String selectedItem;
+  final String _referencia;
+  final String _saldocuenta;
+  const Movimientos(
+      this._cbu,
+      this._dinero,
+      this.selectedItem,
+      this._referencia,
+      this._alias,
+      this._banco,
+      this._beneficiario,
+      this._cuit,
+      this._saldocuenta);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Tab(),
-    );
-  }
-}
-
-class Tab extends StatelessWidget {
-  const Tab({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String FechaActual = DateFormat("dd/MM/yyyy", 'es_ES').format(now);
     return DefaultTabController(
       initialIndex: 0,
       length: 5,
@@ -97,9 +107,17 @@ class Tab extends StatelessWidget {
                 "C.sueldo/seg.social",
                 style: TextStyle(fontSize: 20),
               ),
-              Text(
-                r"CA....4465/$ 4.808.890,00",
-                style: TextStyle(fontSize: 13),
+              Row(
+                children: [
+                  Text(
+                    r"CA....4465/$ ",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  Text(
+                    _saldocuenta,
+                    style: TextStyle(fontSize: 13),
+                  )
+                ],
               )
             ],
           ),
@@ -109,39 +127,39 @@ class Tab extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: ListView(
             children: [
-              List("pepep", "-485745", "98/09/2002", "90000"),
+              List(_banco, _dinero, FechaActual, _saldocuenta),
               Divider(
                 color: Colors.black45,
               ),
-              List("pepep", "-485745", "98/09/2002", "90000"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("pepep", "-485745", "98/09/2002", "90000"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("pepep", "-485745", "98/09/2002", "90000"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("pepep", "-485745", "98/09/2002", "90000"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("pepep", "-485745", "98/09/2002", "90000"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("pepep", "-485745", "98/09/2002", "90000"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("pepep", "-485745", "98/09/2002", "90000"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("pepep", "-485745", "98/09/2002", "90000"),
+              // List("pepep", "-485745", "98/09/2002", "90000"),
+              // Divider(
+              //   color: Colors.black45,
+              // ),
+              // List("pepep", "-485745", "98/09/2002", "90000"),
+              // Divider(
+              //   color: Colors.black45,
+              // ),
+              // List("pepep", "-485745", "98/09/2002", "90000"),
+              // Divider(
+              //   color: Colors.black45,
+              // ),
+              // List("pepep", "-485745", "98/09/2002", "90000"),
+              // Divider(
+              //   color: Colors.black45,
+              // ),
+              // List("pepep", "-485745", "98/09/2002", "90000"),
+              // Divider(
+              //   color: Colors.black45,
+              // ),
+              // List("pepep", "-485745", "98/09/2002", "90000"),
+              // Divider(
+              //   color: Colors.black45,
+              // ),
+              // List("pepep", "-485745", "98/09/2002", "90000"),
+              // Divider(
+              //   color: Colors.black45,
+              // ),
+              // List("pepep", "-485745", "98/09/2002", "90000"),
             ],
           ),
         ),
@@ -169,7 +187,7 @@ List(titular, monto, fecha, cuentadinero) {
         ),
         Row(
           children: [
-            Text(r"$",
+            Text(r"$-",
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.red,

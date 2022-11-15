@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:bank_macro/models/Image_generate.dart';
+import 'package:bank_macro/models/Movimientos_Cuenta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:share_plus/share_plus.dart';
@@ -17,9 +18,18 @@ class Comprobante extends StatefulWidget {
   final String _dinero;
   final String selectedItem;
   final String _referencia;
+  final String _saldocuenta;
 
-  Comprobante(this._cbu, this._dinero, this.selectedItem, this._referencia,
-      this._alias, this._banco, this._beneficiario, this._cuit);
+  Comprobante(
+      this._cbu,
+      this._dinero,
+      this.selectedItem,
+      this._referencia,
+      this._alias,
+      this._banco,
+      this._beneficiario,
+      this._cuit,
+      this._saldocuenta);
 
   @override
   State<Comprobante> createState() => _ComprobanteState();
@@ -54,6 +64,27 @@ class _ComprobanteState extends State<Comprobante> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          //MOVIMIENTOS DE CUENTA**********************************************************
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Movimientos(
+                              widget._cbu,
+                              widget._dinero,
+                              widget.selectedItem,
+                              widget._referencia,
+                              widget._alias,
+                              widget._banco,
+                              widget._beneficiario,
+                              widget._cuit,
+                              widget._saldocuenta,
+                            )));
+              },
+              icon: Icon(Icons.more_vert)),
+        ],
         title: Text("Comprobante"),
         backgroundColor: Color(0xFFF003156),
       ),

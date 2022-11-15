@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   TextEditingController _banco = TextEditingController(text: "");
   TextEditingController _dinero = TextEditingController(text: "");
   TextEditingController _referencia = TextEditingController(text: "");
+  TextEditingController _saldocuenta = TextEditingController(text: "");
   List<String> items = [
     "Varios",
     "Factura",
@@ -78,6 +79,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 //IMPORTE+++++++*****************************************+++
                 Date("IMPORTE", TextInputType.number, _dinero),
+                Date("SALDO CUENTA", TextInputType.number, _saldocuenta)
               ],
             ),
             //BOTTOM*********************************************
@@ -102,7 +104,8 @@ class _HomePageState extends State<HomePage> {
                                     _alias.text,
                                     _beneficiario.text,
                                     _cuit.text,
-                                    _banco.text)));
+                                    _banco.text,
+                                    _saldocuenta.text)));
                       },
                       child: Text("Continuar"),
                     )))
