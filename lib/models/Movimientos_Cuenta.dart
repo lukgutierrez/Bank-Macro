@@ -94,7 +94,7 @@ class Movimientos extends StatelessWidget {
                 height: 20,
                 child: Image(
                   image: AssetImage(
-                    "assets/setting.png",
+                    "assets/icon.png",
                   ),
                   color: Colors.white,
                 )),
@@ -121,7 +121,7 @@ class Movimientos extends StatelessWidget {
               )
             ],
           ),
-          backgroundColor: Color(0xFFF003156),
+          backgroundColor: Color.fromARGB(255, 0, 39, 68),
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -131,35 +131,36 @@ class Movimientos extends StatelessWidget {
               Divider(
                 color: Colors.black45,
               ),
-              // List("pepep", "-485745", "98/09/2002", "90000"),
-              // Divider(
-              //   color: Colors.black45,
-              // ),
-              // List("pepep", "-485745", "98/09/2002", "90000"),
-              // Divider(
-              //   color: Colors.black45,
-              // ),
-              // List("pepep", "-485745", "98/09/2002", "90000"),
-              // Divider(
-              //   color: Colors.black45,
-              // ),
-              // List("pepep", "-485745", "98/09/2002", "90000"),
-              // Divider(
-              //   color: Colors.black45,
-              // ),
-              // List("pepep", "-485745", "98/09/2002", "90000"),
-              // Divider(
-              //   color: Colors.black45,
-              // ),
-              // List("pepep", "-485745", "98/09/2002", "90000"),
-              // Divider(
-              //   color: Colors.black45,
-              // ),
-              // List("pepep", "-485745", "98/09/2002", "90000"),
-              // Divider(
-              //   color: Colors.black45,
-              // ),
-              // List("pepep", "-485745", "98/09/2002", "90000"),
+              List("PAGO PEY PAGOFACIL", "25.500,00", "17/11/2022", "950.350,00"),
+              Divider(
+                color: Colors.black45,
+              ),
+              List("M*RTINEZYMARTINEZ", "9.813,00", "13/11/2022", "975.850,00"),
+              Divider(
+                color: Colors.black45,
+              ),
+              List("UALABIS-P*BLORODRIGUEZ", "2.250,00", "11/11/2022", "985.663,00"),
+              Divider(
+                color: Colors.black45,
+              ),
+              List("MERCDOPAGO-L*PROVINCIANA", "15.000,00", "11/11/2022", "987.913,00"),
+              Divider(
+                color: Colors.black45,
+              ),
+              List("MERCDOPAGO-LATORRE", "20.000,00", "09/11/2022", "1.002.913,00"),
+              Divider(
+                color: Colors.black45,
+              ),
+              
+              List("CA-JUAN-MANUEL-PRZ", "30.500,00", "02/11/2022", "1.022.913,00"),
+              Divider(
+                color: Colors.black45,
+              ),
+              List("GSM MOTOR-5434543-5", "25.540,00", "30/10/2022", "90000"),
+              Divider(
+                color: Colors.black45,
+              ),
+              List("FIAMBRERIA FAVI", "4.000,00", "13/10/2022", "90000"),
             ],
           ),
         ),
