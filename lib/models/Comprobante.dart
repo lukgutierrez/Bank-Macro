@@ -3,7 +3,8 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:bank_macro/models/Image_generate.dart';
-import 'package:bank_macro/models/Movimientos_Cuenta.dart';
+
+import 'package:bank_macro/models/Movimientos_Cuentas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:share_plus/share_plus.dart';
@@ -71,7 +72,7 @@ class _ComprobanteState extends State<Comprobante> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Movimientos(
+                        builder: (context) => Movimientoss(
                               widget._cbu,
                               widget._dinero,
                               widget.selectedItem,

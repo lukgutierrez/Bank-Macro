@@ -1,3 +1,5 @@
+import 'package:bank_macro/database/models/Pages/hive_data.dart';
+import 'package:bank_macro/database/models/datamoney.dart';
 import 'package:bank_macro/models/Comprobante.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +28,26 @@ class _HomePageState extends State<HomePage> {
     "Seguro"
   ];
   String? selectedItem = "Varios";
+  final HiveData hiveData = const HiveData();
+  List<DataMoney> datamoney = [];
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _alias.dispose();
+    super.dispose();
+  }
+
+  Future<void> getData() async {
+    datamoney = await hiveData.contact;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
