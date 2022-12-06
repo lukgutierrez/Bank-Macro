@@ -41,11 +41,15 @@ dependencies:
   intl:
   path_provider: 
   share_plus: 
+  hive_flutter: ^1.1.0
+  hive: ^2.2.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons:
+  build_runner: ^2.3.2
+  hive_generator: ^2.0.0
   
 flutter_icons:
   android: "launcher_icon"
