@@ -1,10 +1,21 @@
 import 'package:bank_macro/Pages/Home_Page.dart';
+import 'package:bank_macro/database/models/datamoney.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(DataMoneyAdapter());
+  runApp(MyApp());
+}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

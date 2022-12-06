@@ -1,9 +1,10 @@
-import 'dart:ui';
-
+import 'dart:core';
+import 'package:bank_macro/database/models/Pages/hive_data.dart';
+import 'package:bank_macro/database/models/datamoney.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class Movimientos extends StatelessWidget {
+class Movimientos extends StatefulWidget {
   final String _cbu;
   final String _alias;
   final String _beneficiario;
@@ -25,6 +26,26 @@ class Movimientos extends StatelessWidget {
       this._saldocuenta);
 
   @override
+  State<Movimientos> createState() => _MovimientosState();
+}
+
+class _MovimientosState extends State<Movimientos> {
+  final HiveData hiveData = const HiveData();
+  List<DataMoney> datamoney = [];
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  Future<void> getData() async {
+    datamoney = await hiveData.contact;
+
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
     String FechaActual = DateFormat("dd/MM/yyyy", 'es_ES').format(now);
@@ -32,139 +53,170 @@ class Movimientos extends StatelessWidget {
       initialIndex: 0,
       length: 5,
       child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(items: [
-          BottomNavigationBarItem(
-              label: "",
-              icon: Row(
-                children: [
-                  Switch(
-                    value: false,
-                    onChanged: (value) {},
-                  ),
-                  Text("Enviar por Correo")
-                ],
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite, color: Colors.white70), label: ""),
-        ]),
-        appBar: AppBar(
-          bottom: TabBar(
-              indicatorColor: Color.fromARGB(255, 255, 113, 160),
-              isScrollable: true,
-              tabs: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "Movimientos",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "Datos de CBU",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "Detalle de Cuenta",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "Alias CBU",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "Cobrar con QR",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                )
-              ]),
-          actions: [
-            SizedBox(
-                width: 20,
-                height: 20,
-                child: Image(
-                  image: AssetImage(
-                    "assets/icon.png",
-                  ),
-                  color: Colors.white,
+          bottomNavigationBar: BottomNavigationBar(items: [
+            BottomNavigationBarItem(
+                label: "",
+                icon: Row(
+                  children: [
+                    Switch(
+                      value: false,
+                      onChanged: (value) {},
+                    ),
+                    Text("Enviar por Correo")
+                  ],
                 )),
-            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
-          ],
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "C.sueldo/seg.social",
-                style: TextStyle(fontSize: 20),
-              ),
-              Row(
-                children: [
-                  Text(
-                    r"CA....4465/$ ",
-                    style: TextStyle(fontSize: 13),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite, color: Colors.white70), label: ""),
+          ]),
+          appBar: AppBar(
+            bottom: TabBar(
+                indicatorColor: Color.fromARGB(255, 255, 113, 160),
+                isScrollable: true,
+                tabs: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      "Movimientos",
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ),
-                  Text(
-                    _saldocuenta,
-                    style: TextStyle(fontSize: 13),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      "Datos de CBU",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      "Detalle de Cuenta",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      "Alias CBU",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      "Cobrar con QR",
+                      style: TextStyle(fontSize: 15),
+                    ),
                   )
-                ],
-              )
+                ]),
+            actions: [
+              SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: Image(
+                    image: AssetImage(
+                      "assets/icon.png",
+                    ),
+                    color: Colors.white,
+                  )),
+              IconButton(
+                  onPressed: () async {
+                    await hiveData.saveDataMoney(DataMoney(
+                        nametitular: widget._beneficiario,
+                        dineromenos: widget._banco,
+                        saldoactual: widget._saldocuenta,
+                        fecha: FechaActual));
+                    await getData();
+                  },
+                  icon: Icon(Icons.more_vert)),
             ],
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "C.sueldo/seg.social",
+                  style: TextStyle(fontSize: 20),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      r"CA....4465/$ ",
+                      style: TextStyle(fontSize: 13),
+                    ),
+                    Text(
+                      widget._saldocuenta,
+                      style: TextStyle(fontSize: 13),
+                    )
+                  ],
+                )
+              ],
+            ),
+            backgroundColor: Color.fromARGB(255, 0, 39, 68),
           ),
-          backgroundColor: Color.fromARGB(255, 0, 39, 68),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: ListView(
-            children: [
-              List(_banco, _dinero, FechaActual, _saldocuenta),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("PAGO PEY PAGOFACIL", "25.500,00", "17/11/2022", "950.350,00"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("M*RTINEZYMARTINEZ", "9.813,00", "13/11/2022", "975.850,00"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("UALABIS-P*BLORODRIGUEZ", "2.250,00", "11/11/2022", "985.663,00"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("MERCDOPAGO-L*PROVINCIANA", "15.000,00", "11/11/2022", "987.913,00"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("MERCDOPAGO-LATORRE", "20.000,00", "09/11/2022", "1.002.913,00"),
-              Divider(
-                color: Colors.black45,
-              ),
-              
-              List("CA-JUAN-MANUEL-PRZ", "30.500,00", "02/11/2022", "1.022.913,00"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("GSM MOTOR-5434543-5", "25.540,00", "30/10/2022", "90000"),
-              Divider(
-                color: Colors.black45,
-              ),
-              List("FIAMBRERIA FAVI", "4.000,00", "13/10/2022", "90000"),
-            ],
-          ),
-        ),
-      ),
+          body: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ListView.builder(
+                  itemCount: datamoney.length,
+                  itemBuilder: (context, index) => Dismissible(
+                        background: Container(
+                          color: Colors.red,
+                          child: Center(child: Text("DELETE")),
+                        ),
+                        key: UniqueKey(),
+                        onDismissed: (direction) async {
+                          await hiveData.deleteDataMoneyIndex(index);
+
+                          await getData();
+                        },
+                        child: ListTile(
+                          title: Text(datamoney[index].nametitular),
+                          subtitle: Text(datamoney[index].dineromenos),
+                        ),
+                      )))),
+      //       children: [
+      //         List(widget._banco, widget._dinero, FechaActual,
+      //             widget._saldocuenta),
+      //         Divider(
+      //           color: Colors.black45,
+      //         ),
+      //         // List("PAGO PEY PAGOFACIL", "25.500,00", "17/11/2022",
+      //         //     "950.350,00"),
+      //         // Divider(
+      //         //   color: Colors.black45,
+      //         // ),
+      //         // List("M*RTINEZYMARTINEZ", "9.813,00", "13/11/2022", "975.850,00"),
+      //         // Divider(
+      //         //   color: Colors.black45,
+      //         // ),
+      //         // List("UALABIS-P*BLORODRIGUEZ", "2.250,00", "11/11/2022",
+      //         //     "985.663,00"),
+      //         // Divider(
+      //         //   color: Colors.black45,
+      //         // ),
+      //         // List("MERCDOPAGO-L*PROVINCIANA", "15.000,00", "11/11/2022",
+      //         //     "987.913,00"),
+      //         // Divider(
+      //         //   color: Colors.black45,
+      //         // ),
+      //         // List("MERCDOPAGO-LATORRE", "20.000,00", "09/11/2022",
+      //         //     "1.002.913,00"),
+      //         // Divider(
+      //         //   color: Colors.black45,
+      //         // ),
+      //         // List("CA-JUAN-MANUEL-PRZ", "30.500,00", "02/11/2022",
+      //         //     "1.022.913,00"),
+      //         // Divider(
+      //         //   color: Colors.black45,
+      //         // ),
+      //         // List("GSM MOTOR-5434543-5", "25.540,00", "30/10/2022", "90000"),
+      //         // Divider(
+      //         //   color: Colors.black45,
+      //         // ),
+      //         // List("FIAMBRERIA FAVI", "4.000,00", "13/10/2022", "90000"),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
