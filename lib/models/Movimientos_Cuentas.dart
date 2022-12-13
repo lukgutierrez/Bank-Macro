@@ -156,6 +156,7 @@ class _MovimientossState extends State<Movimientoss> {
             body: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ListView.builder(
+                  reverse: true,
                     itemCount: datamoney.length,
                     itemBuilder: (context, index) => Dismissible(
                           background: Container(
